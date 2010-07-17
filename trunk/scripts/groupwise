@@ -1,0 +1,119 @@
+#!/bin/bash
+#############################################################
+# Name:        GroupWise Supportconfig Plugin
+# Description: Gathers important troubleshooting information
+#              about GroupWise Agents, Monitor, GWIA and 
+#              WebAccess.
+# License:     GPLv2
+# Bugs:        http://en.opensuse.org/SC-Plugins#Reporting_Bugs
+# Author:      Jason Record (jrecord@novell.com)
+# Modified:    2009 Aug 10
+#############################################################
+. /opt/supportconfig/resources/scplugin.rc
+
+SVER=1.09
+LOG_LINES=0	#0 means include the entire file
+LOG_DIR=/var/log/novell/groupwise
+CONF_DIR=/etc/opt/novell/groupwise
+CONF_SHARE=/opt/novell/groupwise/agents/share
+
+section_header GroupWise Supportconfig Plugin, v${SVER}
+section_header RPM List
+RPMLIST=$(rpm -qa | egrep -i "groupwise" | sort)
+if [ -z "$RPMLIST" ]; then
+	echo "ERROR: GroupWise RPM Packages not installed"
+	echo
+	exit 111
+else
+	echo "$RPMLIST"
+fi
+
+section_header Checking GroupWise Daemons
+for i in grpwise grpwise-ma
+do
+	if [ -f /etc/init.d/$i ]; then
+		chkconfig -l $i
+		/etc/init.d/$i status
+		echo
+	fi
+done
+
+section_header Core File List
+GRPCOREDIR="/opt/novell/groupwise/agents/bin"
+ls -l /core /core\.* 2>/dev/null
+ls -l ${GRPCOREDIR}/core ${GRPCOREDIR}/core\.* 2>/dev/null
+if [ -d ${GRPCOREDIR}/ ]; then
+	FILES1="$(ls -l /core /core\.* 2>/dev/null)"
+	FILES2="$(ls -l ${GRPCOREDIR}/core ${GRPCOREDIR}/core\.* 2>/dev/null)"
+	if [ -n "$FILES1" -a -n "$FILES2" ]; then
+		FILES="$FILES1 $FILES2"
+	elif [ -n "$FILES1" -a -z "$FILES2" ]; then
+		FILES=$FILES1
+	elif [ -z "$FILES1" -a -n "$FILES2" ]; then
+		FILES=$FILES2
+	fi
+else
+	FILES="$(ls -l /core /core\.* 2>/dev/null)"
+fi
+
+if [ -n "$FILES" ]; then
+	section_header Core File Content
+	for i in $FILES
+	do
+		if [ -f $i ]; then
+			file $i
+		fi
+	done
+fi
+
+section_header PID Files
+FILES=$(find /var/log/novell/groupwise/ -type f | grep pid$)
+for i in $FILES
+do
+	cat_log $i
+done
+
+section_header Running Processes
+ps axwwo user,pid,ppid,%cpu,%mem,vsz,rss,stat,time,cmd | head -1
+ps axwwo user,pid,ppid,%cpu,%mem,vsz,rss,stat,time,cmd | grep -E "gwmta|gwpoa|gwinter|gwdva|gwia|gwmon" | grep -v grep
+
+section_header Network Port Status
+netstat -nlp | grep -E "gwmta|gwpoa|gwinter|gwdva|gwia|gwmon"
+
+section_header Configuration Files
+GWHA=${CONF_DIR}/gwha.conf
+cat_log $GWHA
+if [ -f $GWHA ]; then
+	for i in $(\ls -A1 $CONF_SHARE)
+	do
+		SFILE=$CONF_SHARE/$i
+		test -f $SFILE -a -s $SFILE && cat_log $CONF_SHARE/$i 
+	done
+else
+	echo "ERROR: File not found"
+	echo "File:  $GWHA"
+	echo
+fi
+
+section_header Validating RPM List
+for THISRPM in $RPMLIST
+do
+	validate_rpm $THISRPM
+done
+
+section_header Output Files: Last $LOG_LINES Lines
+for OUTFILE in $(find $LOG_DIR -type f | grep output)
+do
+	tail_log $OUTFILE
+done
+
+section_header Log Files: Last $LOG_LINES Lines
+for GDIR in $(\ls -A1 $LOG_DIR | sort )
+do
+	test "$GDIR" == ".mta" && continue
+	GLOG="$LOG_DIR/$GDIR"
+	if [ -d $GLOG ]; then
+		tail_log $(find $GLOG -type f | sort | grep -E '[[:digit:]]$' | tail -1)
+	fi
+done
+
