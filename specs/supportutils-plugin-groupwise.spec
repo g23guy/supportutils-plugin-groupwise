@@ -26,7 +26,7 @@ Requires:     supportconfig-plugin-resource-0.0.1
 
 %description
 Supportconfig plugin for Groupwise. Informaiton is gathered for Groupwise 
-Agents, Monitor, GWIA and WebAcces. Supportconfig saves the plugin output 
+Agents, Monitor, GWIA and WebAccess. Supportconfig saves the plugin output 
 as plugin-groupwise.txt.
 
 Please submit bug fixes or comments via:
