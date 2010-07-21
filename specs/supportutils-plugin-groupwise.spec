@@ -1,5 +1,5 @@
 #
-# spec file for package supportutils-plugin-groupwise (Version 0.0-0)
+# spec file for package supportutils-plugin-groupwise (Version 1.0-0)
 #
 # Copyright (C) 2010 Novell, Inc.
 # This file and all modifications and additions to the pristine
@@ -22,7 +22,7 @@ BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 BuildArch:    noarch
 Distribution: Novell NTS
 Vendor:       Novell Technical Services
-Requires:     supportconfig-plugin-resource-0.0.1
+Requires:     supportconfig-plugin-resource >= 0.0.1
 
 %description
 Supportconfig plugin for Groupwise. Informaiton is gathered for Groupwise 
