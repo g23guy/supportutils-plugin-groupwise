@@ -10,7 +10,7 @@
 # Requires:    supportutils package with supportconfig-plugin-resource-1.0.0
 #################################################################################
 
-SVER=1.99.9
+SVER=2.0.0
 LOG_LINES=0	#0 means include the entire file
 LOG_DIR=/var/log/novell/groupwise
 CONF_DIR=/etc/opt/novell/groupwise
