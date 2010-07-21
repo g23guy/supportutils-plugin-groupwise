@@ -22,7 +22,8 @@ BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 BuildArch:    noarch
 Distribution: Novell NTS
 Vendor:       Novell Technical Services
-Requires:     supportconfig-plugin-resource >= 0.0.1
+Requires:     supportconfig-plugin-resource-1.0.0
+Conflicts:    supportconfig-plugins
 
 %description
 Supportconfig plugin for Groupwise. Informaiton is gathered for Groupwise 
@@ -46,7 +47,7 @@ pwd;ls -la
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/opt/supportconfig/plugins
 install -d $RPM_BUILD_ROOT/usr/share/man/man8
-install -m 0500 groupwise $RPM_BUILD_ROOT/opt/supportconfig/plugins
+install -m 0544 groupwise $RPM_BUILD_ROOT/opt/supportconfig/plugins
 install -m 0644 groupwise-plugin.8.gz $RPM_BUILD_ROOT/usr/share/man/man8/groupwise-plugin.8.gz
 
 %files
