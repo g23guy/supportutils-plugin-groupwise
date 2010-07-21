@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Wed Jul 21 13:58:16 MDT 2010 - jrecord@novell.com 
+
+-ported plugin for new scplugin.rc
+-groupwise: 1.9.99
+
+-------------------------------------------------------------------
 Sat Jul 17 17:21:08 MDT 2010 - jrecord@novell.com 
 
 -initial build
