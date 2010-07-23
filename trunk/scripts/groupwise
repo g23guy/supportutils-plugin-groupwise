@@ -6,11 +6,11 @@
 #              WebAccess.
 # License:     GPLv2
 # Author:      Jason Record (jrecord@novell.com)
-# Modified:    2010 Jul 21
+# Modified:    2010 Jul 22
 # Requires:    supportutils package with supportconfig-plugin-resource-1.0.0
 #################################################################################
 
-SVER=2.0.0
+SVER=2.0.1
 LOG_LINES=0	#0 means include the entire file
 LOG_DIR=/var/log/novell/groupwise
 CONF_DIR=/etc/opt/novell/groupwise
@@ -21,7 +21,7 @@ RCFILE="/opt/supportconfig/resources/scplugin.rc"
 
 section_header "Supportconfig Plugin for GroupWise, v${SVER}"
 
-RPMLIST=$(rpm -qa | egrep -i "groupwise" | sort)
+RPMLIST=$(rpm -qa | egrep -i "groupwise" | sort | grep -v supportutils-plugin-groupwise)
 RPMERROR=$?
 if [ $RPMERROR -gt 0 ]; then
 	echo "ERROR: GroupWise RPM Packages not installed"
