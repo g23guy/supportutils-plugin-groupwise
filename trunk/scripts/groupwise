@@ -59,7 +59,6 @@ else
 	FILES="$(ls -l /core /core\.* 2>/dev/null)"
 fi
 
-section_header "Core File Info"
 if [ -n "$FILES" ]; then
 	for i in $FILES
 	do

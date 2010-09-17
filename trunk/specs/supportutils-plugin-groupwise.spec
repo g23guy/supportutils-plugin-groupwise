@@ -15,7 +15,7 @@ License:      GPLv2
 Group:        Documentation/SuSE
 Autoreqprov:  on
 Version:      1.0
-Release:      DEV.20100917.2
+Release:      DEV.20100917.3
 Source:       %{name}-%{version}.tar.gz
 Summary:      Supportconfig Plugin for Groupwise
 BuildRoot:    %{_tmppath}/%{name}-%{version}-build
