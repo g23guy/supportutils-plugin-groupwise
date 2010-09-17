@@ -42,9 +42,8 @@ done
 
 plugin_command 'ntpq -p'
 
-section_header "Core File List"
 GRPCOREDIR="/opt/novell/groupwise/agents/bin"
-ls -l /core /core\.* ${GRPCOREDIR}/core ${GRPCOREDIR}/core\.* 2>/dev/null
+plugin_command "ls -l /core /core\.* ${GRPCOREDIR}/core ${GRPCOREDIR}/core\.* 2>/dev/null"
 
 if [ -d ${GRPCOREDIR}/ ]; then
 	FILES1="$(ls -l /core /core\.* 2>/dev/null)"
@@ -65,7 +64,7 @@ if [ -n "$FILES" ]; then
 	for i in $FILES
 	do
 		if [ -f $i ]; then
-			file $i
+			plugin_command "file $i"
 		fi
 	done
 fi
@@ -88,14 +87,12 @@ do
 done
 
 if [ -d $LOG_DIR ]; then
-	section_header "Output Files"
 	FILES=$(find $LOG_DIR -type f | grep output)
 	plog_files $LOG_LINES $FILES
 fi
 
 
 if [ -d $LOG_DIR ]; then
-	section_header "PID Files"
 	FILES=$(find $LOG_DIR -type f | grep pid$)
 	plog_files $LOG_LINES $FILES
 
