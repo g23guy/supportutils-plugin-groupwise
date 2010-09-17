@@ -15,14 +15,14 @@ License:      GPLv2
 Group:        Documentation/SuSE
 Autoreqprov:  on
 Version:      1.0
-Release:      0
+Release:      DEV.20100917.1
 Source:       %{name}-%{version}.tar.gz
 Summary:      Supportconfig Plugin for Groupwise
 BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 BuildArch:    noarch
 Distribution: Novell NTS
 Vendor:       Novell Technical Services
-Requires:     supportconfig-plugin-resource-1.0.0
+Requires:     supportconfig-plugin-resource
 Conflicts:    supportconfig-plugins
 
 %description
