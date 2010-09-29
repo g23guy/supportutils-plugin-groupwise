@@ -17,7 +17,7 @@ Autoreqprov:  on
 Version:      1.0
 Release:      1
 Source:       %{name}-%{version}.tar.gz
-Summary:      Supportconfig Plugin for Groupwise
+Summary:      Supportconfig Plugin for GroupWise
 BuildRoot:    %{_tmppath}/%{name}-%{version}-build
 BuildArch:    noarch
 Distribution: Novell NTS
@@ -26,7 +26,7 @@ Requires:     supportconfig-plugin-resource
 Conflicts:    supportconfig-plugins
 
 %description
-Supportconfig plugin for Groupwise. Informaiton is gathered for Groupwise 
+Supportconfig plugin for GroupWise. Information is gathered for GroupWise 
 Agents, Monitor, GWIA and WebAccess. Supportconfig saves the plugin output 
 as plugin-groupwise.txt.
 
