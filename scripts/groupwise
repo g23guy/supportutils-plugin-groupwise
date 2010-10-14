@@ -6,16 +6,16 @@
 #              WebAccess.
 # License:     GPLv2
 # Author:      Jason Record (jrecord@novell.com)
-# Modified:    2010 Sep 29
+# Modified:    2010 Oct 14
 # Requires:    supportutils package with supportconfig-plugin-resource
 #################################################################################
 
-SVER=2.0.1
+SVER=2.0.2
 LOG_LINES=0	#0 means include the entire file
 LOG_DIR=/var/log/novell/groupwise
 CONF_DIR=/etc/opt/novell/groupwise
 CONF_SHARE=/opt/novell/groupwise/agents/share
-RCFILE="/opt/supportconfig/resources/scplugin.rc"
+RCFILE="/usr/lib/supportconfig/resources/scplugin.rc"
 
 [ -s $RCFILE ] && . $RCFILE || { echo "ERROR: Initializing resource file: $RCFILE"; exit 1; }
 

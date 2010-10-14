@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Thu Oct 14 16:09:57 MDT 2010 - jrecord@novell.com
+
+-changed /opt/supportconfig to /usr/lib/supportconfig
+-groupwise: 2.0.2
+
+-------------------------------------------------------------------
 Fri Sep 29 10:25:06 MDT 2010 - jrecord@novell.com 
 
 -ported plugin for new scplugin.rc
