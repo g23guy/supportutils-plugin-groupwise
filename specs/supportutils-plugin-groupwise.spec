@@ -1,5 +1,5 @@
 #
-# spec file for package supportutils-plugin-groupwise (Version 1.0-1)
+# spec file for package supportutils-plugin-groupwise (Version 1.0-2)
 #
 # Copyright (C) 2010 Novell, Inc.
 # This file and all modifications and additions to the pristine
@@ -15,7 +15,7 @@ License:      GPLv2
 Group:        Documentation/SuSE
 Autoreqprov:  on
 Version:      1.0
-Release:      1.20101014.PTF.1
+Release:      2
 Source:       %{name}-%{version}.tar.gz
 Summary:      Supportconfig Plugin for GroupWise
 BuildRoot:    %{_tmppath}/%{name}-%{version}-build
@@ -23,6 +23,7 @@ BuildArch:    noarch
 Distribution: Novell NTS
 Vendor:       Novell Technical Services
 Requires:     supportconfig-plugin-resource
+Requires:     supportconfig-plugin-tag
 Conflicts:    supportconfig-plugins
 
 %description
